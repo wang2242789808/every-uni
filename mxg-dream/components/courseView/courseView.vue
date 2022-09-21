@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<view class="course-item" v-for="item in hotList" :key="item.id" @click="toDetail(item)">
+		<view class="course-item" v-for="item in hotList" :key="item.id" @click="toDetail(item.id)">
 			<view class="course-img">
 				<image :src="item.mainImage" mode=""></image>
 				<view class="course-time">
@@ -37,12 +37,10 @@
 		props: ['hotList'],
 		setup() {
 			const router = useRouter()
-			const toDetail = (val) => {
-				console.log(val);
-				router.push("/pages/detailView/detailView", {
-					query: {
-						val
-					}
+			const toDetail = (id) => {
+				console.log(id);
+				uni.navigateTo({
+					url: `/pages/detailView/detailView?id=${id}`
 				})
 			}
 			return {

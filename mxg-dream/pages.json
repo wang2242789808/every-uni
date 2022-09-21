@@ -76,6 +76,24 @@
             }
             
         }
+        ,{
+            "path" : "pages/videoView/videoView",
+            "style" :                                                                                    
+            {
+               "navigationStyle": "custom",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/orderView/orderView",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

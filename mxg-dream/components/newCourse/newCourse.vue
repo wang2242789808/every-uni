@@ -1,5 +1,5 @@
 <template>
-	<view class="course-item" v-for="item in newList" :key="item.id">
+	<view class="course-item" v-for="item in newList" :key="item.id"  @click="toDetail(item.id)">
 		<view class="course-img">
 			<image :src="item.mainImage" mode=""></image>
 			<view class="course-time">
@@ -25,9 +25,22 @@
 </template>
 
 <script>
+	import {useRouter} from 'vue-router'
 	export default {
 		name: "newCourse",
 		props: ['newList'],
+		setup(){
+			const router=useRouter()
+			const toDetail = (id) => {
+				console.log(id);
+				uni.navigateTo({
+					url:`/pages/detailView/detailView?id=${id}`
+				})
+			}
+			return{
+				toDetail
+			}
+		}
 	}
 </script>
 

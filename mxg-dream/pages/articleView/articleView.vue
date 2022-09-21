@@ -4,44 +4,86 @@
 			<!-- 搜索 -->
 			<search></search>
 			<!-- 分类 -->
-			<view class="cate-box">
-				<view class="cate-item active">
-					推荐
+			<scroll-view scroll-x="true">
+				<view class="cate-box">
+					<view :class="{'cate-item':true, active:categoryId==0}">
+						推荐
+					</view>
+					<view :class="{'cate-item':true,active:categoryId==item.id}" v-for="item in articleCate" :key="item.id" @click="changeId(item.id)">
+						{{item.name}}
+					</view>
 				</view>
-				<view class="cate-item">
-					Java
-				</view>
-				<view class="cate-item">
-					前端
-				</view>
-				<view class="cate-item">
-					云计算
-				</view>
-				<view class="cate-item">
-					运维
-				</view>
-			</view>
+			</scroll-view>
 		</view>
 		
 		<!-- 内容 -->
 		<view class="article-box">
-			<articleView></articleView>
-			<articleView></articleView>
-			<articleView></articleView>
-			<articleView></articleView>
-			<articleView></articleView>
-			<articleView></articleView>
-			<articleView></articleView>
+			<articleView :articleList="articleList"></articleView>
+			
 		</view>
 	</view>
 </template>
 
 <script>
+	import {getCateNav,getArticleList} from '@/utils/http.js'
+import { reactive, toRefs } from "vue";
+import {
+		onReachBottom,
+		onPageScroll
+	} from '@dcloudio/uni-app'
 	export default {
-		data() {
-			return {
+		setup(){
+			const data=reactive({
+				articleCate:[], //分类
+				articleList:[], //阅读数据
+				categoryId:0,//分类id
+				current:1,//页码
+				size:10 //页数
+			})
+			// 获取分类
+			getCateNav().then(res =>{
+				console.log(res);
+				data.articleCate=res.data
+			})
+			// 切换
+			const changeId=(id)=>{
+				data.categoryId=id
+				getArticleList(data.categoryId,data.size,data.current).then(res =>{
+					console.log(res);
+					if(data.current==1){
+						data.articleList=res.data.records
+					}else{
+						data.articleList=[...data.articleList,...res.data.records]
+					}
+					
+				})
+			}
+			// 获取阅读数据
+			getArticleList(data.categoryId,data.size,data.current).then(res =>{
+				console.log(res);
+				if(data.current==1){
+					data.articleList=res.data.records
+				}else{
+					data.articleList=[...data.articleList,...res.data.records]
+				}
 				
-			};
+			})
+			onReachBottom(()=>{
+				data.current++
+				getArticleList(data.categoryId,data.size,data.current).then(res =>{
+					console.log(res);
+					if(data.current==1){
+						data.articleList=res.data.records
+					}else{
+						data.articleList=[...data.articleList,...res.data.records]
+					}
+					
+				})
+			})
+			return {
+				...toRefs(data),
+				changeId
+			}
 		}
 	}
 </script>
@@ -62,17 +104,25 @@
 	height: 80rpx;
 	border-bottom: 1px solid #e7e7e7;
 	display: flex;
-	justify-content: space-around;
-	align-items: center;
 	background-color: #fff;
 	border: none;
+	padding: 0 50rpx;
 	.cate-item{
+		white-space: nowrap;
 		height: 70rpx;
 		line-height: 70rpx;
+		margin-right: 90rpx;
 	}
 }
 .active{
 	border-bottom: 6rpx solid #077dff;
 	color: #077dff;
 }
+scroll-view ::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+    color: transparent;
+
+   }
 </style>

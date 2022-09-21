@@ -61,7 +61,7 @@ async function getFreeList() {
 	return data
 }
 // 获取付费精品数据
-async function getNiceList(current,size) {
+async function getNiceList(current, size) {
 	const {
 		data
 	} = await http.post('course/api/course/search', {
@@ -76,10 +76,38 @@ async function getNiceList(current,size) {
 	return data
 }
 // 获取详情数据
-async function getDetailList(){
-	const {data} =await http.get('course/api/course/null')
+async function getDetailList(id) {
+	const {
+		data
+	} = await http.get(`course/api/course/null?id=${id}`)
 	return data
 }
+// 获取章节信息
+async function getArticle(id){
+	const {data} =await http.get(`course/api/chapter/section/list/null?id=${id}`)
+	return data
+}
+// 获取章节视频信息
+async function getVideo(id){
+	const {data} =await http.get(`course/course/buy/list/null?id=${id}`)
+	return data
+}
+// 获取评论信息
+async function getComment(id){
+	const {data} =await http.get(`course/api/comment/list/null?id=${id}`)
+	return data
+}
+// 获取套餐信息
+async function getGroup(id){
+	const {data} =await http.get(`course/api/group/list/null?id=${id}`)
+	return data
+}
+// 获取阅读信息
+async function getArticleList(categoryId,size,current){
+	const {data} =await http.post('article/api/article/search', {categoryId,size,current})
+	return data
+}
+// 获取阅读分类
 export {
 	getBanner,
 	getCateNav,
@@ -87,5 +115,10 @@ export {
 	getNewList,
 	getFreeList,
 	getNiceList,
-	getDetailList
+	getDetailList,
+	getArticle,
+	getVideo,
+	getComment,
+	getGroup,
+	getArticleList
 }

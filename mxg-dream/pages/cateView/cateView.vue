@@ -3,38 +3,8 @@
 		<view class="cate-box">
 			<scroll-view scroll-y="true" class="left" :show-scrollbar="false">
 				<view >
-					<view class="left-item active">
-						Java
-					</view>
-					<view class="left-item">
-						前端
-					</view>
-					<view class="left-item">
-						前端
-					</view>
-					<view class="left-item">
-						前端
-					</view>
-					<view class="left-item">
-						前端
-					</view>
-					<view class="left-item">
-						前端
-					</view>
-					<view class="left-item">
-						前端
-					</view>
-					<view class="left-item">
-						前端
-					</view>
-					<view class="left-item">
-						前端
-					</view>
-					<view class="left-item">
-						前端
-					</view>
-					<view class="left-item">
-						前端
+					<view :class="{'left-item':true,active:currentId==item.id}" v-for="item in cateNav" :key="item.id" @click="changeId(item,item.id)">
+						{{item.name}}
 					</view>
 				</view>
 			</scroll-view>
@@ -42,26 +12,8 @@
 			
 			<view class="right">
 				<view class="right-box">
-					<view class="right-item">
-						noasfo
-					</view>
-					<view class="right-item">
-						noasfo
-					</view>
-					<view class="right-item">
-						noasfo
-					</view>
-					<view class="right-item">
-						noasfo
-					</view>
-					<view class="right-item">
-						noasfo
-					</view>
-					<view class="right-item">
-						noasfo
-					</view>
-					<view class="right-item">
-						noasfo
+					<view class="right-item" v-for="item in cateRight" :key="item.id">
+						{{item.name}}
 					</view>
 				</view>
 			</view>
@@ -70,11 +22,32 @@
 </template>
 
 <script>
+	import {getCateNav} from '@/utils/http.js'
+import { reactive, toRefs } from "vue";
 	export default {
-		data() {
-			return {
+		setup(){
+			const data=reactive({
+				cateNav:[],
+				currentId:1,
+				cateRight:[]
+			})
+			// 分类导航栏
+			getCateNav().then(res => {
+				console.log(res);
+				if (res.code == 20000) {
+					data.cateNav = res.data
+					data.cateRight=res.data[data.currentId-1].labelList
+				}
+			})
+			const changeId=(item,id)=>{
+				data.cateRight=item.labelList
+				data.currentId=id
 				
-			};
+			}
+			return {
+				...toRefs(data),
+				changeId
+			}
 		}
 	}
 </script>
