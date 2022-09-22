@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class="top">
-			<navigator url="pages/index/index" open-type="switchTab">&lt;</navigator>
+			<image class="left" src="../../static/images/back.png" mode=""></image>
 			<view class="center">
 				<input type="text" placeholder="搜索你想要的内容">
 			</view>
@@ -27,17 +27,20 @@
 .top{
 	width: 100%;
 	display: flex;
-	border-bottom: 1px solid #eee;
+	border-bottom: 1px solid #f8f8f8;
 	padding: 2%;
 	box-sizing: border-box;
 	justify-content: space-between;
 	align-items: center;
+	.left{
+		width: 40rpx;
+		height: 40rpx;
+	}
 	.center{
 		width: 84%;
 		input{
 			height: 60rpx;
 			border-radius: 60rpx;
-			padding-left: 20rpx;
 			background: url('../../static/images/search.png') no-repeat #f0f1f2;
 			background-size: 30rpx;
 			padding-left: 45rpx;

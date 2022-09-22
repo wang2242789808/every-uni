@@ -5,56 +5,25 @@
 			<search></search>
 			<!-- 分类 -->
 			<view class="cate-box">
-				<view class="cate-item active">
-					热门回答
+				<view :class="{'cate-item':true,active:currentCate==item.cate}" v-for="item,index in cateNav" :key="index" @click="changeCate(item.cate)">
+					{{item.title}}
 				</view>
-				<view class="cate-item">
-					最新问题
-				</view>
-				<view class="cate-item">
-					等待回答
-				</view>
+				
 			</view>
 		</view>
-		
+
 		<!-- 内容 -->
 		<view class="ask-box">
-			<view class="ask-item">
+			<view class="ask-item" v-for="item in askList" :key="item.id" @click="toAskDetail(item.id)">
 				<view class="fir-text">
-					不是怕平顶山神佛睡觉哦安居房泼妇
+					{{item.title}}
 				</view>
 				<view class="sec-text">
 					<view class="left">
-						7回答 · 245浏览
+						{{item.reply}}回答 · {{item.viewCount}}浏览
 					</view>
 					<view class="right">
-						吕布是 · 2005年05月21日
-					</view>
-				</view>
-			</view>
-			<view class="ask-item">
-				<view class="fir-text">
-					不是怕平顶山神佛睡觉哦安居房泼妇
-				</view>
-				<view class="sec-text">
-					<view class="left">
-						7回答 · 245浏览
-					</view>
-					<view class="right">
-						吕布是 · 2005年05月21日
-					</view>
-				</view>
-			</view>
-			<view class="ask-item">
-				<view class="fir-text">
-					不是怕平顶山神佛睡觉哦安居房泼妇
-				</view>
-				<view class="sec-text">
-					<view class="left">
-						7回答 · 245浏览
-					</view>
-					<view class="right">
-						吕布是 · 2005年05月21日
+						{{item.nickName}} · {{item.updateDate}}
 					</view>
 				</view>
 			</view>
@@ -63,28 +32,107 @@
 </template>
 
 <script>
+	import {
+		getAskList
+	} from '@/utils/http.js'
+	import {
+		onReachBottom,
+		onPageScroll
+	} from '@dcloudio/uni-app'
+	import {
+		reactive,
+		toRefs
+	} from "vue";
 	export default {
-		data() {
-			return {
+		setup() {
+			const data = reactive({
+				askList: [], //问答数据
+				current: 1,
+				size: 10,
+				cateNav:[
+					{
+						title:'热门回答',
+						cate:'hot'
+					},
+					{
+						title:'最新问题',
+						cate:'new'
+					},
+					{
+						title:'等待回答',
+						cate:'wait'
+					}
+				],
+				currentCate:'hot'
+			})
+			// 获取全部问答数据
+			getAskList(data.currentCate,data.current, data.size).then(res => {
+				console.log(res);
+				if (data.current == 1) {
+					data.askList = res.data.records
+				} else {
+					daa.askList = [...data.askList, ...res.data.records]
+				}
+
+			})
+			// 切换分类
+			const changeCate=(val)=>{
+				console.log(val);
+				data.currentCate=val
+				getAskList(data.currentCate,data.current, data.size).then(res => {
+					console.log(res);
+					if (data.current == 1) {
+						data.askList = res.data.records
+					} else {
+						daa.askList = [...data.askList, ...res.data.records]
+					}
 				
-			};
+				})
+			}
+			// 去详情页
+			const toAskDetail=(id)=>{
+				uni.navigateTo({
+					url:`/pages/askDetail/askDetail?id=${id}`
+				})
+			}
+			// 上拉加载
+			onReachBottom(() => {
+				data.current++
+				getAskList(data.current, data.size).then(res => {
+					console.log(res);
+					if (data.current == 1) {
+						data.askList = res.data.records
+					} else {
+						data.askList = [...data.askList, ...res.data.records]
+					}
+
+				})
+			})
+			return {
+				...toRefs(data),
+				changeCate,
+				toAskDetail
+			}
 		}
 	}
 </script>
 
 <style lang="scss">
-	.ask-box{
+	.ask-box {
 		width: 100%;
-		.ask-item{
+
+		.ask-item {
 			width: 100%;
 			border-bottom: 1px solid #eee;
 			padding: 4%;
 			box-sizing: border-box;
-			.fir-text{
+
+			.fir-text {
 				font-weight: 700;
 				font-size: 35rpx;
 			}
-			.sec-text{
+
+			.sec-text {
 				display: flex;
 				justify-content: space-between;
 				margin: 2% 0;
@@ -92,32 +140,37 @@
 			}
 		}
 	}
-	.box{
+
+	.box {
 		position: sticky;
 		left: 0;
 		top: 0;
 		z-index: 22;
 	}
-	.article-box{
+
+	.article-box {
 		width: 100%;
-		
+
 	}
-.cate-box{
-	width: 100%;
-	height: 80rpx;
-	border-bottom: 1px solid #e7e7e7;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	background-color: #fff;
-	border: none;
-	.cate-item{
-		height: 70rpx;
-		line-height: 70rpx;
+
+	.cate-box {
+		width: 100%;
+		height: 80rpx;
+		border-bottom: 1px solid #e7e7e7;
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		background-color: #fff;
+		border: none;
+	
+	.cate-item {
+			height: 70rpx;
+			line-height: 70rpx;
+		}
 	}
-}
-.active{
-	border-bottom: 6rpx solid #077dff;
-	color: #077dff;
-}
+
+	.active {
+		border-bottom: 6rpx solid #077dff;
+		color: #077dff;
+	}
 </style>

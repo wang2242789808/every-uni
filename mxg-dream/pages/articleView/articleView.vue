@@ -6,7 +6,7 @@
 			<!-- 分类 -->
 			<scroll-view scroll-x="true">
 				<view class="cate-box">
-					<view :class="{'cate-item':true, active:categoryId==0}">
+					<view :class="{'cate-item':true, active:categoryId==0}" @click="changeId(0)">
 						推荐
 					</view>
 					<view :class="{'cate-item':true,active:categoryId==item.id}" v-for="item in articleCate" :key="item.id" @click="changeId(item.id)">
@@ -47,6 +47,7 @@ import {
 			})
 			// 切换
 			const changeId=(id)=>{
+				// console.log(id);
 				data.categoryId=id
 				getArticleList(data.categoryId,data.size,data.current).then(res =>{
 					console.log(res);

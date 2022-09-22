@@ -37,8 +37,8 @@
 			"path" : "pages/mineView/mineView",
 			"style" :                                                                                    
 			{
-			    "navigationBarBackgroundColor": "#345dc2",
-				"navigationBarTitleText": "",
+			    
+				 "navigationStyle": "custom",
 			    "enablePullDownRefresh": false
 			}
 		},
@@ -87,6 +87,22 @@
         }
         ,{
             "path" : "pages/orderView/orderView",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        },
+		{
+			"path": "pages/articleDetail/articleDetail",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false
+			}
+		}
+        ,{
+            "path" : "pages/askDetail/askDetail",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",

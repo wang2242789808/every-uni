@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<view class="article-item" v-for="item in articleList" :key="item.id">
+		<view class="article-item" v-for="item in articleList" :key="item.id" @click="toDetail(item.id)">
 			<view class="left">
 				<view class="fir-text">
 					{{item.title}}
@@ -31,7 +31,15 @@
 		name:"articleView",
 		props:['articleList'],
 		setup(){
-			
+			const toDetail=(id)=>{
+				console.log(id);
+				uni.navigateTo({
+					url:`/pages/articleDetail/articleDetail?id=${id}`
+				})
+			}
+			return {
+				toDetail
+			}
 		}
 	}
 </script>

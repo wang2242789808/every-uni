@@ -8,7 +8,7 @@
 		<!-- 分类搜索 -->
 		<view class="cate-box">
 			<view v-for="item in cateNav.slice(0,7)" :key="item.id"
-				@click="$router.push('pages/contentView/contentView')">{{item.name}}</view>
+				@click="toContentView(item.id)">{{item.name}}</view>
 			<view>
 				全部分类
 			</view>
@@ -196,9 +196,17 @@
 					scrollTop: 0
 				})
 			}
+			// 去课程页面
+			const toContentView=(id)=>{
+				console.log(id);
+				uni.navigateTo({
+					url:`/pages/contentView/contentView?id=${id}`
+				})
+			}
 			return {
 				...toRefs(data),
-				touchTop
+				touchTop,
+				toContentView
 			}
 		},
 	}
