@@ -79,14 +79,14 @@ async function getNiceList(current, size) {
 async function getDetailList(id) {
 	const {
 		data
-	} = await http.get(`course/api/course/null/${id}`)
+	} = await http.get('course/api/course/null')
 	return data
 }
 // 获取章节信息
 async function getArticle(id) {
 	const {
 		data
-	} = await http.get(`course/api/chapter/section/list/null/${id}`)
+	} = await http.get('course/api/chapter/section/list/null')
 	return data
 }
 // 获取章节视频信息
@@ -100,14 +100,14 @@ async function getVideo(id) {
 async function getComment(id) {
 	const {
 		data
-	} = await http.get(`course/api/comment/list/null/${id}`)
+	} = await http.get('course/api/comment/list/null')
 	return data
 }
 // 获取套餐信息
 async function getGroup(id) {
 	const {
 		data
-	} = await http.get(`course/api/group/list/null/${id}`)
+	} = await http.get('course/api/group/list/null')
 	return data
 }
 // 获取阅读信息
@@ -161,17 +161,42 @@ async function getAskQuestion(id) {
 	return data
 }
 // 获取课程数据
-async function getCourseList(id) {
+async function getCourseList(id, current, size,sort,isFree,labelId) {
 	const {
 		data
 	} = await http.post('course/api/course/search', {
 		categoryId: id,
 		content: null,
-		current: 1,
-		isFree: null,
+		current: current,
+		isFree: isFree,
+		labelId: labelId,
+		size: size,
+		sort: sort
+	})
+	return data
+}
+// 获取文章数据
+async function getArticleData(id, current, size,sort,labelId){
+	const {data}=await http.post('article/api/article/search',{
+		categoryId: id,
+		content: null,
+		current: current,
+		labelId: labelId,
+		size: size,
+		sort: sort
+	})
+	return data
+}
+
+// 获取问答数据
+async function getAskData(id, current, size,sort){
+	const {data}=await http.post('question/api/question/search',{
+		categoryId: id,
+		content: null,
+		current: current,
 		labelId: null,
-		size: 10,
-		sort: null
+		size: size,
+		sort: sort
 	})
 	return data
 }
@@ -193,5 +218,7 @@ export {
 	getAskList,
 	getAskTop,
 	getAskQuestion,
-	getCourseList
+	getCourseList,
+	getArticleData,
+	getAskData
 }

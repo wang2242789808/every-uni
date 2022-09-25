@@ -1,9 +1,9 @@
 <template>
 	<view>
 		<view class="top">
-			<image class="left" src="../../static/images/back.png" mode=""></image>
+			<image class="left" src="../../static/images/back.png" mode="" @click="back"></image>
 			<view class="center">
-				<input type="text" placeholder="搜索你想要的内容">
+				<input type="text" placeholder="搜索你想要的内容" :value="modelValue" @input="searchVal">
 			</view>
 			<navigator url="pages/index/index" open-type="switchTab" hover-class="other-navigator-hover">
 			取消
@@ -15,10 +15,21 @@
 <script>
 	export default {
 		name:"myInput",
-		data() {
+		props:['modelValue'],
+		setup(props,ctx){
+			const searchVal=(e)=>{
+				ctx.emit("update:modelValue", e.detail.value)
+				// console.log(e.detail.value);
+			}
+			const back=()=>{
+				uni.switchTab({
+					url:"/pages/index/index"
+				})
+			}
 			return {
-				
-			};
+				searchVal,
+				back
+			}
 		}
 	}
 </script>

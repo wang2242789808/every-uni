@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<swiper :indicator-dots="true" :autoplay="true" indicator-active-color="#fff" indicator-color="#ccc" :interval="3000" :duration="1000">
+		<swiper @change="swiperItem" :indicator-dots="true" :autoplay="true" indicator-active-color="#fff" indicator-color="#ccc" :interval="3000" :duration="1000">
 			<swiper-item v-for="item in bannerList" :key="item.id" :style="`background-image:linear-gradient(${item.background},#fff)`">				
 					<image :src="item.imageUrl" mode=""></image>
 			</swiper-item>
@@ -12,10 +12,15 @@
 	import {getBanner} from '@/utils/http.js'
 import { reactive, toRefs } from "vue";
 	export default {
-		setup(){
+		setup(props, ctx){
 			const data=reactive({
 				bannerList:[]
 			})
+			
+			const swiperItem = (e) => {
+				ctx.emit('swiperItem', data.bannerList[e.detail.current].background)
+			}
+			
 			getBanner().then(res =>{
 				console.log(res);
 				if(res.code==20000){
@@ -23,7 +28,8 @@ import { reactive, toRefs } from "vue";
 				}
 			})
 			return {
-				...toRefs(data)
+				...toRefs(data),
+				swiperItem
 			}
 		}
 	}

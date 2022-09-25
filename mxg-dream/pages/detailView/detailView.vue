@@ -52,10 +52,10 @@
 					<view class="out-box" v-for="item,index in articleList" :key="item.id">
 						<view class="fir-txt">
 							<span class="fir-span">第{{index+1}}章 {{item.name}}</span>
-							<view class="in-box" v-for="child in item.sectionList" :key="child.id"
+							<view class="in-box" v-for="child,i in item.sectionList" :key="child.id"
 								@click="toVideo(child)">
 								<image src="../../static/images/jian.png" mode=""></image>
-								<span class="num">1-1</span>
+								<span class="num">{{ index+1 }}-{{i+1}}</span>
 								<span>{{child.name}}</span>
 								<span class="free-look" v-show="child.isFree==1">试看</span>
 							</view>

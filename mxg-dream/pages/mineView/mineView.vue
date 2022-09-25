@@ -113,6 +113,7 @@
 	.u1,.u2,.u3{
 		margin-top: 20rpx;
 		background-color: white;
+		padding-left: 0;
 	}
 	.list {
 		display: flex;
@@ -122,6 +123,7 @@
 		border-bottom: 1px solid #eee;
 		.left {
 			font-size: 34rpx;
+			margin-left: 6%;
 		}
 		.right {
 			margin-right: 40rpx;

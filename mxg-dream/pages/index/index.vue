@@ -1,15 +1,16 @@
 <template>
 	<view class="content">
 		
-		<search class="search"></search>
+		<search class="search" :Background="Background"></search>
+		<!-- 回到顶部 -->
 		<image class="top-pic" src="../../static/images/top.png" mode="" v-show="flag" @click="touchTop"></image>
 		<!-- 轮播图 -->
-		<banner></banner>
+		<banner @swiperItem="swiperItem"></banner>
 		<!-- 分类搜索 -->
 		<view class="cate-box">
 			<view v-for="item in cateNav.slice(0,7)" :key="item.id"
-				@click="toContentView(item.id)">{{item.name}}</view>
-			<view>
+				@click="toContentView(item.name)">{{item.name}}</view>
+			<view @click="toContentView('全部分类')">
 				全部分类
 			</view>
 		</view>
@@ -120,7 +121,8 @@
 				current: 1,
 				size: 10,
 				flag:false,
-				scroll:0
+				scroll:0,
+				Background: "#006C00"
 			})
 			// 分类导航栏
 			getCateNav().then(res => {
@@ -197,16 +199,20 @@
 				})
 			}
 			// 去课程页面
-			const toContentView=(id)=>{
-				console.log(id);
+			const toContentView=(name)=>{
+				console.log(name);
 				uni.navigateTo({
-					url:`/pages/contentView/contentView?id=${id}`
+					url:`/pages/contentView/contentView?name=${name}`
 				})
+			}
+			const swiperItem = (bgc) => {
+				data.Background = bgc
 			}
 			return {
 				...toRefs(data),
 				touchTop,
-				toContentView
+				toContentView,
+				swiperItem
 			}
 		},
 	}

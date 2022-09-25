@@ -3,7 +3,10 @@
 		<view class="cate-box">
 			<scroll-view scroll-y="true" class="left" :show-scrollbar="false">
 				<view >
-					<view :class="{'left-item':true,active:currentId==item.id}" v-for="item in cateNav" :key="item.id" @click="changeId(item,item.id)">
+					<view :class="{'left-item':true,active:currentId==9}" @click="changeId('', 9)">
+						全部分类
+					</view>
+					<view :class="{'left-item':true,active:currentId==item.id}" v-for="item in cateNav" :key="item.id" @click="changeId(item, item.id)">
 						{{item.name}}
 					</view>
 				</view>
@@ -12,7 +15,8 @@
 			
 			<view class="right">
 				<view class="right-box">
-					<view class="right-item" v-for="item in cateRight" :key="item.id" @click="toCateDetail(item.id)">
+					<span class="right-item">全部分类</span>
+					<view class="right-item" v-for="item in cateRight" :key="item.id"  @click="cateDetail(item.id,item.name)">
 						{{item.name}}
 					</view>
 				</view>
@@ -25,10 +29,10 @@
 	import {getCateNav} from '@/utils/http.js'
 import { reactive, toRefs } from "vue";
 	export default {
-		setup(){
+		setup(props,ctx){
 			const data=reactive({
 				cateNav:[],
-				currentId:1,
+				currentId:9,
 				cateRight:[]
 			})
 			// 分类导航栏
@@ -39,21 +43,26 @@ import { reactive, toRefs } from "vue";
 					data.cateRight=res.data[data.currentId-1].labelList
 				}
 			})
+			
 			const changeId=(item,id)=>{
 				data.cateRight=item.labelList
 				data.currentId=id
-				
-			}
-			const toCateDetail=(id)=>{
+				ctx.emit('changeId')
 				console.log(id);
-				uni.navigateTo({
-					url:`/pages/contentView/contentView?id=${id}`
-				})
 			}
+			
+			const cateDetail=(id,name)=>{
+				console.log(id,name);
+				// uni.navigateTo({
+				// 	url:`/pages/contentView/contentView?id=${id}&name=${name}`
+				// })
+				ctx.emit('cateDetail', {id,name})
+			}
+			
 			return {
 				...toRefs(data),
 				changeId,
-				toCateDetail
+				cateDetail
 			}
 		}
 	}
@@ -83,9 +92,9 @@ import { reactive, toRefs } from "vue";
 	width: 100%;
 	display: flex;
 	.left{
-		width: 30%;
+		width: 24%;
 		text-align: center;
-		height: calc(100vh - 100rpx);
+		height: calc(50vh - 40rpx);
 		background-color: #f8f9fb;
 		.left-item{
 			height: 140rpx;
@@ -98,9 +107,11 @@ import { reactive, toRefs } from "vue";
 	}
 	.right{
 		flex: 1;
+		background-color: white;
 		.right-box{
 			width: 100%;
-			padding: 5%;
+			padding: 2%;
+			box-sizing: border-box;
 			.right-item{
 				display: inline-block;
 				height: 32px;

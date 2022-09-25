@@ -1,5 +1,5 @@
 <template>
-	<view class="top">
+	<view class="top" :style="`background-color:${Background}`">
 		<view @click="toSearch" class="ipt">
 			<image src="../../static/images/search.png" mode=""></image>
 			<text>搜索你想要的内容</text>
@@ -9,6 +9,7 @@
 
 <script>
 	export default {
+		props: ['Background'],
 		setup(){
 			const toSearch=()=>{
 				uni.navigateTo({
@@ -43,8 +44,8 @@ image {
 .top{
 		width: 100%;
 		height: 35rpx;
-		background-color: #345dc2;
 		padding-top: 2%;
 		padding-bottom: 6%;
+		background-color: #345dc2;
 	}
 </style>

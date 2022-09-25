@@ -13,21 +13,7 @@
 		</view>
 
 		<!-- 内容 -->
-		<view class="ask-box">
-			<view class="ask-item" v-for="item in askList" :key="item.id" @click="toAskDetail(item.id)">
-				<view class="fir-text">
-					{{item.title}}
-				</view>
-				<view class="sec-text">
-					<view class="left">
-						{{item.reply}}回答 · {{item.viewCount}}浏览
-					</view>
-					<view class="right">
-						{{item.nickName}} · {{item.updateDate}}
-					</view>
-				</view>
-			</view>
-		</view>
+		<askDataList :askList="askList"></askDataList>
 	</view>
 </template>
 

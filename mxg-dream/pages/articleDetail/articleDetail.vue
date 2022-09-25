@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class="top">
-			<image src="../../static/images/back.png" mode=""></image>
+			<image src="../../static/images/back.png" mode="" @click="back"></image>
 			<p>{{articleDetailList.title}}</p>
 		</view>
 		<view class="fir-box">
@@ -79,8 +79,13 @@
 				console.log(res);
 				data.articleAsk=res.data
 			})
+			const back=()=>{
+				// uni.navigateBack()
+				
+			}
 			return {
-				...toRefs(data)
+				...toRefs(data),
+				back
 			}
 		}
 	}
