@@ -80,7 +80,7 @@
 				data.articleAsk=res.data
 			})
 			const back=()=>{
-				// uni.navigateBack()
+				uni.navigateBack()
 				
 			}
 			return {

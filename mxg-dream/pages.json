@@ -5,20 +5,131 @@
 			"style": {
 				"navigationStyle": "custom"
 			}
+		}, {
+			"path": "pages/cateView/cateView",
+			"style": {
+				"navigationBarTitleText": "分类",
+				"navigationBarBackgroundColor": "#345dc2",
+				"navigationBarTextStyle": "white",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/articleView/articleView",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false
+			}
+
+		},
+		{
+			"path": "pages/askView/askView",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/mineView/mineView",
+			"style": {
+
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/searchView/searchView",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false
+			}
+		}, {
+			"path": "pages/loginView/loginView",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false
+			}
+
+		},
+		{
+			"path": "pages/detailView/detailView",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false
+			}
+		}, {
+			"path": "pages/contentView/contentView",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/videoView/videoView",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/orderView/orderView",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		},
+		{
+			"path": "pages/articleDetail/articleDetail",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false
+			}
+		}, {
+			"path": "pages/askDetail/askDetail",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/balanceView/balanceView",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/studyView/studyView",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/opinionView/opinionView",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		},
+		{
+			"path": "pages/setupView/setupView",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path":"pages/feedbackView/feedbackView",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false
+			}
 		}
 	    ,{
-            "path" : "pages/cateView/cateView",
-            "style" :                                                                                    
-            {
-               "navigationBarTitleText": "分类",
-			   "navigationBarBackgroundColor": "#345dc2",
-			   "navigationBarTextStyle": "white",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/articleView/articleView",
+            "path" : "pages/userView/userView",
             "style" :                                                                                    
             {
                 "navigationStyle": "custom",
@@ -27,89 +138,14 @@
             
         },
 		{
-			"path": "pages/askView/askView",
-			"style": {
-				 "navigationStyle": "custom",
-				"enablePullDownRefresh": false
-			}
-		},
-		{
-			"path" : "pages/mineView/mineView",
-			"style" :                                                                                    
-			{
-			    
-				 "navigationStyle": "custom",
-			    "enablePullDownRefresh": false
-			}
-		},
-		{
-			"path" : "pages/searchView/searchView",
-			"style" :                                                                                    
-			{
-			   "navigationStyle": "custom",
-			    "enablePullDownRefresh": false
-			}
+		    "path" : "pages/confirmOrder/confirmOrder",
+		    "style" :                                                                                    
+		    {
+		        "navigationStyle": "custom",
+		        "enablePullDownRefresh": false
+		    }
+		    
 		}
-        ,{
-            "path" : "pages/loginView/loginView",
-            "style" :                                                                                    
-            {
-               "navigationStyle": "custom",
-                "enablePullDownRefresh": false
-            }
-            
-        },
-		{
-			"path" : "pages/detailView/detailView",
-			"style" :                                                                                    
-			{
-			   "navigationStyle": "custom",
-			    "enablePullDownRefresh": false
-			}
-		}
-        ,{
-            "path" : "pages/contentView/contentView",
-            "style" :                                                                                    
-            {
-              "navigationStyle": "custom",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/videoView/videoView",
-            "style" :                                                                                    
-            {
-               "navigationStyle": "custom",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/orderView/orderView",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        },
-		{
-			"path": "pages/articleDetail/articleDetail",
-			"style": {
-				"navigationStyle": "custom",
-				"enablePullDownRefresh": false
-			}
-		}
-        ,{
-            "path" : "pages/askDetail/askDetail",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -118,8 +154,7 @@
 		"backgroundColor": "#F8F8F8"
 	},
 	"tabBar": {
-		"list": [
-			{
+		"list": [{
 				"iconPath": "static/tab/index.png",
 				"selectedIconPath": "static/tab/index-active.png",
 				"pagePath": "pages/index/index",

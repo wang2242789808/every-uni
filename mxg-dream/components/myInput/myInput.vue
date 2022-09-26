@@ -19,7 +19,6 @@
 		setup(props,ctx){
 			const searchVal=(e)=>{
 				ctx.emit("update:modelValue", e.detail.value)
-				// console.log(e.detail.value);
 			}
 			const back=()=>{
 				uni.switchTab({

@@ -70,7 +70,7 @@
 					<view class="top">
 						<view class="left">
 							<view class="left-pic">
-								
+
 								<image src="../../static/tab/my.png" mode="" v-if="item.userImage==null"></image>
 								<image :src="item.userImage" mode="" v-else></image>
 							</view>
@@ -79,15 +79,16 @@
 								<p>{{item.createDate}}</p>
 							</view>
 						</view>
-						<image class="logo" src="../../static/images/redflower.png" mode="" v-if="item.isGood==1"></image>
-						<image class="logo" src="../../static/images/flower.png" mode="" v-else ></image>
-						
+						<image class="logo" src="../../static/images/redflower.png" mode="" v-if="item.isGood==1">
+						</image>
+						<image class="logo" src="../../static/images/flower.png" mode="" v-else></image>
+
 					</view>
 					<view class="center-text">
 						{{item.content}}
 					</view>
 					<view class="bot-txt" v-if="item.children!=null">
-							讲师回复:{{item.children.content}}
+						讲师回复:{{item.children.content}}
 					</view>
 				</view>
 			</view>
@@ -96,7 +97,7 @@
 					<view class="fir-group">
 						{{item.title}}
 					</view>
-						<courseView :hotList="item.list"></courseView>
+					<courseView :hotList="item.list"></courseView>
 					<view class="group-bottom">
 						<view class="bo-text">
 							<span>￥{{item.groupPrice}}</span>
@@ -130,12 +131,14 @@
 	import {
 		useRoute,
 		useRouter
-	} from 'vue-router'  
-	import {onMounted} from 'vue'
+	} from 'vue-router'
+	import {
+		onMounted
+	} from 'vue'
 	export default {
 		setup() {
 			uni.pageScrollTo({
-				scrollTop:0
+				scrollTop: 0
 			})
 			const data = reactive({
 				tabList: [{
@@ -158,14 +161,14 @@
 				currentId: 0,
 				detailList: [], //详情数据
 				articleList: [], //章节数据
-				commentList:[], //评论数据
-				groupList:[] //套餐数据
+				commentList: [], //评论数据
+				groupList: [] //套餐数据
 			})
-			
+
 			const route = useRoute()
 			const router = useRouter()
-			const popup=ref(null)
-			
+			const popup = ref(null)
+
 			// 切换导航栏
 			const changeTab = (id) => {
 				data.currentId = id
@@ -188,45 +191,50 @@
 				console.log(val);
 				if (val.isFree == 0) {
 					uni.showToast({
-						icon:"none",
-						title:"请先购买"
+						icon: "none",
+						title: "请先购买"
 					})
 				} else {
 					popup.value.open()
-					data.videoUrl=val.videoUrl
+					data.videoUrl = val.videoUrl
 					console.log(data.videoUrl);
 					// router.push(`/pages/videoView/videoView?id=${id}`)
 				}
-				
+
 			}
 			// 关闭弹框
-			const close=()=>{
+			const close = () => {
 				popup.value.close()
 			}
-			const closePop=()=>{
+			const closePop = () => {
 				popup.value.close()
 			}
 			// 获取评论
-			getComment(route.query._value).then(res =>{
+			getComment(route.query._value).then(res => {
 				// console.log(res);
-				data.commentList=res.data
+				data.commentList = res.data
 			})
 			// 获取套餐数据
-			getGroup(route.query._value).then(res =>{
+			getGroup(route.query._value).then(res => {
 				console.log(res);
-				data.groupList=res.data
+				data.groupList = res.data
 			})
 			// 购买套餐
-			const buyGroup=(val)=>{
-				// router.push(`/pages/orderView/orderView?val=${val}`)
+			const buyGroup = (val) => {
+				console.log(JSON.stringify(val));
+				const group=JSON.stringify(val)
+				uni.navigateTo({
+					url:`/pages/confirmOrder/confirmOrder?group=${group}`
+				})
 			}
-			const back=()=>{
+			const back = () => {
 				uni.navigateBack()
 			}
 			// 返回上一页
 			const toBack = () => {
-				// console.log(444);
-				// router.push("/pages/index/index")
+				uni.navigateTo({
+					url: '/pages/index/index'
+				})
 			}
 			return {
 				...toRefs(data),
@@ -247,48 +255,57 @@
 	// .pop{
 	// 	width: 100%;
 	// 	min-height: 100vh;
-		
+
 	// }
-	.pop{
+	.pop {
 		color: white;
 		text-align: center;
-		p{
+
+		p {
 			font-size: 40rpx;
 			margin-bottom: 5%;
-			span{
+
+			span {
 				margin-left: 3%;
 			}
 		}
 	}
+
 	// 套餐
-	.last-tab{
+	.last-tab {
 		width: 100%;
-		.last-box{
+
+		.last-box {
 			width: 90%;
 			margin: 5%;
 			box-shadow: 5rpx 4rpx 4rpx 4rpx #eee;
 			border-radius: 15rpx;
 			padding: 3%;
 			box-sizing: border-box;
-			.fir-group{
+
+			.fir-group {
 				font-size: 35rpx
 			}
-			.group-bottom{
+
+			.group-bottom {
 				width: 100%;
 				display: flex;
 				justify-content: space-between;
 				margin-top: 3%;
-				.buy-btn{
+
+				.buy-btn {
 					color: red;
 					font-weight: 550;
 				}
-				.bo-text{
-					span{
+
+				.bo-text {
+					span {
 						font-weight: 700;
 						color: red;
 						font-size: 40rpx;
 					}
-					s{
+
+					s {
 						color: #8d8d8d;
 						margin-left: 5%;
 						font-size: 30rpx;
@@ -296,52 +313,63 @@
 				}
 			}
 		}
-		
+
 	}
+
 	// 评论
-	.thr-tab{
+	.thr-tab {
 		width: 100%;
-		.comment-box{
+
+		.comment-box {
 			width: 100%;
 			padding: 4%;
 			box-sizing: border-box;
-			.top{
+
+			.top {
 				width: 100%;
 				display: flex;
 				justify-content: space-between;
-				.left{
+
+				.left {
 					display: flex;
-					.center p:nth-of-type(1){
+
+					.center p:nth-of-type(1) {
 						font-weight: 600;
 					}
-					.center p:nth-of-type(2){
+
+					.center p:nth-of-type(2) {
 						color: gray;
 						font-size: 28rpx
 					}
-					.left-pic{
+
+					.left-pic {
 						width: 90rpx;
 						height: 90rpx;
 						border-radius: 50%;
 						background-color: #fff;
 						margin-right: 20rpx;
-						image{
+
+						image {
 							width: 100%;
 							height: 100%;
 							border-radius: 50%;
 						}
 					}
-					
+
 				}
-				.logo{
+
+				.logo {
 					width: 50rpx;
 					height: 50rpx;
 				}
-				
+
 			}
-			.center-text{
+
+			.center-text {
 				margin: 2% 0;
 			}
-			.bot-txt{
+
+			.bot-txt {
 				width: 100%;
 				padding: 4% 3%;
 				box-sizing: border-box;
@@ -350,6 +378,7 @@
 			}
 		}
 	}
+
 	// 章节
 	.big-box {
 		width: 100%;
@@ -510,7 +539,7 @@
 			display: flex;
 			margin: 2% 0;
 			color: #8d8d8d;
-				
+
 			.left,
 			.right {
 				width: 200rpx;
@@ -519,19 +548,21 @@
 				line-height: 70rpx;
 				border-radius: 40rpx;
 				background-color: #f8f9fb;
-				
+
 			}
 
 			.left {
 				margin-right: 3%;
-				image{
+
+				image {
 					width: 40rpx;
 					height: 40rpx;
 					vertical-align: middle;
 				}
 			}
-			.right{
-				image{
+
+			.right {
+				image {
 					width: 30rpx;
 					height: 30rpx;
 					line-height: 30rpx;

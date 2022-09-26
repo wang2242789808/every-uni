@@ -291,6 +291,7 @@
 					scrollTop: 0
 				})
 			}
+			// 去详情页
 			const cateDetail = (obj) => {
 				data.popFlag3 = false
 				console.log(obj);

@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<!-- 搜索区域 -->
-		<myInput></myInput>
+		<myInput v-model="val"></myInput>
 		
 		<view class="title">
 			热门搜索
@@ -45,11 +45,16 @@
 </template>
 
 <script>
+import { reactive, toRefs } from "vue"
 	export default {
-		data() {
+		setup(){
+			const data=reactive({
+				val:''
+			})
+			console.log(data.val);
 			return {
-				
-			};
+				...toRefs(data)
+			}
 		}
 	}
 </script>

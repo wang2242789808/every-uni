@@ -200,6 +200,47 @@ async function getAskData(id, current, size,sort){
 	})
 	return data
 }
+
+// 请求订单
+async function order() {
+ const {
+  data
+ } = await http.get('pay/order/user/list')
+ return data
+}
+// 我的余额 
+async function balance() {
+ const {
+  data
+ } = await http.get('pay/user/balance')
+ return data
+}
+// 我的学习 
+async function study() {
+ const {
+  data
+ } = await http.get('course/course/study/list')
+ return data
+}
+
+
+// 获取验证码
+async function getCode(mobile){
+	const { data } = await http.post('/system/sms/code', {
+		mobile,
+		templateCode: "MSM_1999123123"
+	})
+	return data
+}
+
+// 登录
+async function getUser(obj) {
+	const { data } = await http.post('/auth/login', {
+		code: obj.code,
+		mobile: obj.mobile
+	})
+	return data
+}
 export {
 	getBanner,
 	getCateNav,
@@ -220,5 +261,10 @@ export {
 	getAskQuestion,
 	getCourseList,
 	getArticleData,
-	getAskData
+	getAskData,
+	order,
+	balance,
+	study,
+	getCode,
+	getUser
 }

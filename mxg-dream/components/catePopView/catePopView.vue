@@ -50,12 +50,8 @@ import { reactive, toRefs } from "vue";
 				ctx.emit('changeId')
 				console.log(id);
 			}
-			
+			// 分类详情页
 			const cateDetail=(id,name)=>{
-				console.log(id,name);
-				// uni.navigateTo({
-				// 	url:`/pages/contentView/contentView?id=${id}&name=${name}`
-				// })
 				ctx.emit('cateDetail', {id,name})
 			}
 			
