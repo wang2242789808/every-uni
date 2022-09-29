@@ -12,6 +12,9 @@ let host = 'https://www.lexuemiao.com/api/'
  * }
  */
 function postRequest(url,data) {
+    wx.showLoading({
+      title: '加载中...',
+    })
     return new Promise((resolve, reject) => {
         wx.request({
             url: `${host}${url}`,
@@ -25,6 +28,9 @@ function postRequest(url,data) {
             },
             fail: (res) => {
                 reject(res.data)
+            },
+            complete: () => {
+                wx.hideLoading()
             }
         })
     })
@@ -40,6 +46,9 @@ function postRequest(url,data) {
  * }
  */
 function getRequest(url,data) {
+    wx.showLoading({
+        title: '加载中...',
+      })
     return new Promise((resolve, reject) => {
         wx.request({
             url: `${host}${url}`,
@@ -50,6 +59,9 @@ function getRequest(url,data) {
             },
             fail: (res) => {
                 reject(res.data)
+            },
+            complete: () => {
+                wx.hideLoading()
             }
         })
     })

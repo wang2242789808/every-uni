@@ -5,7 +5,7 @@
     box-sizing: border-box;
     box-shadow: 6rpx 4rpx 8rpx 4rpx #eee;
     border-radius: 6%;
-    margin: 8% 0;
+    margin: 4% 0 8% 0;
     position: relative;
 }
 
@@ -22,7 +22,7 @@
 
 .top-txt {
     position: absolute;
-    top: -30rpx;
+    top: 0;
     left: 0;
     background-color: #f15a24;
     color: white;
@@ -38,7 +38,7 @@
 .tui-item .fir-txt {
     font-size: 32rpx;
     color: rgb(65, 65, 65);
-    margin-bottom: 20rpx;
+    margin:40rpx 0 20rpx 0;
 }
 
 .tui-item .sec-txt {

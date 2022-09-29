@@ -6,12 +6,14 @@
     <text class="txt">不过线第二年免费重读</text>
     <text class="txt">不过线重读</text>
   </view>
+
   <view class="pic-box">
-    <view class="sec-txt" wx:for="{{item.teacher}}" wx:key="id">
+    <view class="sec-txt" wx:for="{{item.teacher}}" wx:for-index="i" wx:if="{{i < 3}}" wx:key="id">
       <image src="{{item.avatar}}"></image>
       <text class="name-txt">{{item.teacher_name}}</text>
     </view>
   </view>
+
   <view class="bot-free">
     <view class="mian">
       <text wx:if="item.stock"> <text hidden="{{!item.stock}}">限免</text> {{item.stock}} <text hidden="{{!item.stock}}">人</text> </text>

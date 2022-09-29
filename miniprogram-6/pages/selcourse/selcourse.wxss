@@ -1,10 +1,16 @@
 /* pages/selcourse/selcourse.wxss */
+
+.content{
+    width: 100%;
+    background-color: #fafafa;
+}
 .top {
     width: 100%;
     display: flex;
     justify-content: space-between;
     padding: 0 4%;
     box-sizing: border-box;
+    background-color: white;
 }
 
 .top text {
@@ -27,6 +33,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    background-color: #fff;
 }
 
 .nav-item {
@@ -43,9 +50,9 @@
 
 swiper {
     margin: 4% 3%;
+    background-color: #fff;
     /* border-radius: 6%; */
 }
-
 swiper-item image {
     width: 100%;
     height: 100%;
@@ -54,6 +61,7 @@ swiper-item image {
 
 .kua-box {
     width: 100%;
+    background-color: #fff;
 }
 
 .kua-box text {
@@ -108,7 +116,7 @@ swiper-item image {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 2% 0;
+    margin: 2% 0 0 0;
 }
 
 .cen-box image {
@@ -202,11 +210,16 @@ swiper-item image {
     font-size: 24rpx;
 }
 
+.open-box{
+    width: 100%;
+    background-color: white;
+}
+
 .tui-txt {
     font-size: 50rpx;
     font-weight: 700;
     color: #434a64;
-    margin: 2%;
+    margin: 2% 0 0 2%;
 }
 
 .tui-course {

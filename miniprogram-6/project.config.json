@@ -43,7 +43,7 @@
             {
                 "packageJsonPath": "./package.json",
                 "miniprogramNpmDistDir": "./miniprogram/"
-              }
+            }
         ],
         "minifyWXSS": true,
         "disableUseStrict": false,

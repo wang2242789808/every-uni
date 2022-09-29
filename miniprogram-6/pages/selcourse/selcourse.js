@@ -6,24 +6,9 @@ Page({
      * 页面的初始数据
      */
     data: {
-        navList: [
-            {
-                title: '考研英语',
-                id: 2
-            },
-            {
-                title: '考研政治',
-                id: 3
-            },
-            {
-                title: '实用英语',
-                id: 4
-            },
-            {
-                title: '考研数学',
-                id: 5
-            }
-        ],
+        navList: [],
+        tagList: [], //标签数据
+        navIndex: 0,
         currentId: 1,
         firFlag: false,
         secFlag: false,
@@ -49,9 +34,11 @@ Page({
         currentSecId: null,
         currentLastId: null,
         liveList: [],  //今日直播数据
-        openCourse:[],  //近期公开课
-        catchCourse:[],
-        recomCourse:[]  //推荐好课
+        modelName:'',
+        openCourse: [],  //近期公开课
+        catchCourse: [],
+        recomCourse: [],  //推荐好课
+        newDate: {}
     },
 
 
@@ -60,14 +47,34 @@ Page({
      */
     onLoad: function (options) {
         // 获取轮播图数据
-        getRequest('app/home/banner/13/4').then(res => {
+        getRequest('app/home/banner/1/4').then(res => {
             this.data.bannerList = res.data
             this.setData({
                 bannerList: this.data.bannerList
             })
-            // console.log(this.data.bannerList);
         })
-        // this.chooseFinal()
+        // 获取考研天数
+        getRequest('app/home/operateConfig').then(res => {
+            this.setData({
+                newDate: res.data
+            })
+        })
+        // tab栏
+        getRequest(`app/home/getSecondClassify/1`).then(res => {
+            console.log(res.data, this.data.navIndex);
+            this.setData({
+                navList: res.data
+            })
+        })
+
+        // 免费直播课
+        getRequest('app/home/marketingCourse/1?classify_id=1').then(res =>{
+            console.log(res);
+            this.setData({
+                openCourse:res.data.course_list.splice(0, 3),
+                modelName:res.data.model_name
+            })
+        })
     },
 
     /**
@@ -95,7 +102,7 @@ Page({
      * 生命周期函数--监听页面卸载
      */
     onUnload: function () {
-        
+
     },
 
     /**
@@ -120,18 +127,54 @@ Page({
     },
     // nav导航栏切换
     changeNav(e) {
-        console.log(e);
-        this.setData({
-            currentId: e.currentTarget.dataset.id
+        // console.log(e);
+        // 获取轮播图数据
+        getRequest(`app/home/banner/${this.data.currentId}/4`).then(res => {
+              console.log(res);
+            this.data.bannerList = res.data
+            this.setData({
+                bannerList: this.data.bannerList
+            })
         })
-        console.log(this.data.currentId);
+        // tab栏切换对应内容
+        getRequest(`app/home/classifyCourse/${this.data.currentId}?page=1&limit=150&classify_id=${this.data.currentId}`).then(res => {
+            console.log(res);
+            this.data.recomCourse = res.data.map(item => {
+                return {
+                    course_classify_id: item.course_classify_id,
+                    course_classify_title: item.course_classify_title,
+                    course_type: item.course_type,
+                    end_time: item.end_time,
+                    id: item.id,
+                    price: item.price == 0 ? 0 : (item.price / 100).toFixed(2),
+                    is_show_original: item.is_show_original,
+                    marketing_time: item.marketing_time,
+                    sales_num: item.sales_num,
+                    start_time: item.start_time,
+                    teacher: item.teacher,
+                    title: item.title,
+                }
+            })
+            this.setData({
+                recomCourse: this.data.recomCourse
+            })
+        })
+
+
+        this.setData({
+            currentId: e.currentTarget.dataset.id,
+            navIndex: e.currentTarget.dataset.index
+        })
+        console.log(this.data.currentId, this.data.navIndex);
+
+
     },
 
     // 选择课程弹框
     togglePopup(e) {
         // 选择考试分类
         getRequest('app/home/getFirstClassify').then(res => {
-            console.log(res);
+            // console.log(res);
             this.data.FirstClassify = res.data
             this.setData({
                 FirstClassify: this.data.FirstClassify,
@@ -160,8 +203,6 @@ Page({
             selTitle: title,
             currentFirId: this.data.currentFirId
         })
-
-        // console.log(this.data.currentFirId);
     },
 
     // 选择考试详情
@@ -173,7 +214,6 @@ Page({
             lastFlag: true,
             currentSecId: id
         })
-        // console.log(this.data.currentSecId);
     },
     // 选择课程完成按钮
     toggleLastPopup(e) {
@@ -195,11 +235,12 @@ Page({
         })
         // tab栏
         getRequest(`app/home/getSecondClassify/${this.data.currentFirId}`).then(res => {
-            // console.log(res);
+            console.log(res);
             this.setData({
                 navList: res.data
             })
         })
+
 
         // 今日直播
         getRequest(`app/home/liveToday/${this.data.currentFirId}`).then(res => {
@@ -212,23 +253,40 @@ Page({
         // 近期公开课
         getRequest(`app/home/marketingCourse/${this.data.currentFirId}`).then(res => {
             this.setData({
-                openCourse:res.data.course_list.splice(0,3),
-                catchCourse:res.data.course_list
+                openCourse: res.data.course_list.splice(0, 3),
+                catchCourse: res.data.course_list,
+                modelName:res.data.model_name
             })
-            // console.log(res.data.openCourse);
         })
 
         // 推荐好课
-        getRequest(`app/home/recommendCourse/${this.data.currentFirId}`).then(res =>{
-         
+        getRequest(`app/home/recommendCourse/${this.data.currentFirId}`).then(res => {
+
+            this.data.recomCourse = res.data.course_list.map(item => {
+                return {
+                    course_classify_id: item.course_classify_id,
+                    course_classify_title: item.course_classify_title,
+                    course_type: item.course_type,
+                    end_time: item.end_time,
+                    id: item.id,
+                    price: item.price == 0 ? 0 : (item.price / 100).toFixed(2),
+                    is_show_original: item.is_show_original,
+                    marketing_time: item.marketing_time,
+                    sales_num: item.sales_num,
+                    start_time: item.start_time,
+                    teacher: item.teacher,
+                    title: item.title,
+                }
+            })
+
             this.setData({
-                recomCourse:res.data.course_list
+                recomCourse: this.data.recomCourse
             })
             console.log(this.data.recomCourse);
         })
         this.setData({
             lastFlag: false,
-            finishFlag:false
+            finishFlag: false
         })
     },
     // 关闭弹窗
