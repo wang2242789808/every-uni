@@ -11,15 +11,19 @@
 		{
 			"path": "pages/cateView/cateView",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": "分类",
+				"navigationBarBackgroundColor": "#d75255",
+				"navigationBarTextStyle": "white"
 			}
 		}
 	    ,{
             "path" : "pages/carView/carView",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+                "navigationBarTitleText": "购物车",
+                "enablePullDownRefresh": false,
+				"navigationBarBackgroundColor": "#d75255",
+				"navigationBarTextStyle": "white"
             }
             
         }
@@ -27,8 +31,10 @@
             "path" : "pages/mineView/mineView",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+                "navigationBarTitleText": "我的",
+                "enablePullDownRefresh": false,
+				"navigationBarBackgroundColor": "#d75255",
+				"navigationBarTextStyle": "white"
             }
             
         }

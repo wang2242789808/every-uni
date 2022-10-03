@@ -62,5 +62,10 @@ Page({
      */
     onShareAppMessage() {
 
+    },
+    toIndex(){
+        wx.switchTab({
+          url: '/pages/selcourse/selcourse',
+        })
     }
 })

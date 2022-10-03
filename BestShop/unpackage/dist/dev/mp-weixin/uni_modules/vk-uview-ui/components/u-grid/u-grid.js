@@ -72,5 +72,5 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     b: common_vendor.s($options.gridStyle)
   };
 }
-var Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-300710cb"], ["__file", "C:/Users/Lenovo/Desktop/\u4E50\u5B66\u55B5/BestShop/uni_modules/vk-uview-ui/components/u-grid/u-grid.vue"]]);
+var Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-300710cb"], ["__file", "C:/Users/Lenovo/Desktop/\u4E50\u5B66\u55B5/every-uni/BestShop/uni_modules/vk-uview-ui/components/u-grid/u-grid.vue"]]);
 wx.createComponent(Component);

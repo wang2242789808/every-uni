@@ -1,61 +1,52 @@
 <!--pages/miaowu/miaowu.wxml-->
-<!-- 头部 -->
-<view class="top">
-  <image src="/images/喵.png" class="log"></image>
-  <view class="top-right">
-    <image src="/images/铃铛.png"></image>
-    <image src="/images/猫人.png"></image>
+<view class="top-box">
+  <!-- 头部 -->
+  <view class="top">
+    <image src="/static/image/喵.png" class="log"></image>
+    <view class="top-right">
+      <image src="/static/image/铃铛.png"></image>
+      <image src="/static/image/猫人.png"></image>
+    </view>
   </view>
-</view>
-<!-- tab栏 -->
-<view class="tab-box">
-  <text wx:for="{{tabdata}}" wx:key="index" class="active">{{item}}</text>
+  <!-- tab栏 -->
+  <view class="tab-box">
+    <text wx:for="{{tabdata}}" data-id="{{item.id}}" data-index="{{index}}" wx:key="index" class="{{currentIndex==index?'active':''}}" bindtap="changeIndex">{{item.name}}</text>
+  </view>
+
 </view>
 <!-- 滑动模块 -->
-<scroll-view scroll-x="true">
+<scroll-view scroll-x="true" wx:if="{{currentIndex==0}}">
   <view class="hua-box">
     <view class="hua-item">
       <view class="img">
-        <image src="https://lexuemiao.oss-cn-beijing.aliyuncs.com/uploads/image/2020af1zvps41607912321.jpg"></image>
+        <image src="https://wap.lexuemiao.com/img/indexMore.eada8bd5.png"></image>
       </view>
       <view class="title">···</view>
       <view class="num">查看更多考研话题</view>
     </view>
-    <view class="hua-item">
+    <view class="hua-item" wx:for="{{askList}}" wx:key="{{item.theme_id}}">
       <view class="img">
-        <image src="https://lexuemiao.oss-cn-beijing.aliyuncs.com/uploads/image/2020af1zvps41607912321.jpg"></image>
+        <image src="{{item.cover}}"></image>
       </view>
-      <view class="title">#答疑解惑#</view>
-      <view class="num">1973讨论</view>
+      <view class="title">#{{item.title}}#</view>
+      <view class="num">{{item.dyna_count}}讨论</view>
     </view>
-    <view class="hua-item">
-      <view class="img">
-        <image src="https://lexuemiao.oss-cn-beijing.aliyuncs.com/uploads/image/2020af1zvps41607912321.jpg"></image>
-      </view>
-      <view class="title">#数学答疑#</view>
-      <view class="num">2334讨论</view>
-    </view>
-    <view class="hua-item">
-      <view class="img">
-        <image src="https://lexuemiao.oss-cn-beijing.aliyuncs.com/uploads/image/2020af1zvps41607912321.jpg"></image>
-      </view>
-      <view class="title">逻辑答疑</view>
-      <view class="num">5481讨论</view>
-    </view>
+
   </view>
 </scroll-view>
-<!-- 发布 -->
-<view class="release">
+
+<!-- 广场 -->
+<view class="release" wx:for="{{contentList}}" wx:key="index" wx:if="{{currentIndex==0}}">
   <view class="release-top">
     <view class="left">
       <!-- 头像 -->
       <view class="img">
-        <image src="https://lexuemiao.oss-cn-beijing.aliyuncs.com/uploads/image/2020ikgh6ivq1601017111.jpg" class="to"></image>
+        <image src="{{item.square_info.avatar}}" class="to"></image>
         <image src="/images/v.png" class="v"></image>
       </view>
       <view class="name-box">
         <!-- 账号名 -->
-        <view>小喵喵</view>
+        <view>{{item.square_info.user_nickname}}</view>
         <!-- 日期 -->
         <view class="time">08-19</view>
       </view>
@@ -74,38 +65,39 @@
   </view>
   <!-- 内容 -->
   <view class="substance">
-    <view class="substance-title">好阿客服部外而非你发呢啊发我风娃娃</view>
+    <view class="substance-title">{{item.square_info.dyna_details}}</view>
     <view class="substance-img">
-      <image src="	https://lexuemiao.oss-cn-beijing.aliyuncs.com/upload/audio/12938a51770fa617d02a32d115b0c1f1.jpg"></image>
-      <image src="	https://lexuemiao.oss-cn-beijing.aliyuncs.com/upload/audio/12938a51770fa617d02a32d115b0c1f1.jpg"></image>
+      <image wx:for="{{item.square_info.dyna_cover}}" wx:for-item="child" src="{{child}}"></image>
     </view>
   </view>
   <!-- 尾部 -->
   <view class="footer">
     <view>
-      <image src="/images/分享.png"></image>
+      <image src="/static/image/分享.png"></image>
     </view>
     <view>
-      <image src="/images/评论.png"></image>
-      <text>9</text>
+      <image src="/static/image/评论.png"></image>
+      <text>{{item.square_info.comment_count}}</text>
     </view>
     <view>
-      <image src="/images/猫爪.png"></image>
-      <text>30</text>
+      <image src="/static/image/猫爪.png"></image>
+      <text>{{item.square_info.likes}}</text>
     </view>
   </view>
 </view>
-<view class="release">
+
+<!-- 图书勘误 -->
+<view class="release" wx:for="{{bookList}}" wx:key="index" wx:if="{{currentIndex==1}}" data-id="{{item.id}}" data-val="{{item}}" bindtap="toBookDetail">
   <view class="release-top">
     <view class="left">
       <!-- 头像 -->
       <view class="img">
-        <image src="https://lexuemiao.oss-cn-beijing.aliyuncs.com/uploads/image/2020ikgh6ivq1601017111.jpg" class="to"></image>
+        <image src="{{item.avatar}}" class="to"></image>
         <image src="/images/v.png" class="v"></image>
       </view>
       <view class="name-box">
         <!-- 账号名 -->
-        <view>小喵喵</view>
+        <view>{{item.user_nickname}}</view>
         <!-- 日期 -->
         <view class="time">08-19</view>
       </view>
@@ -123,39 +115,43 @@
     </view>
   </view>
   <!-- 内容 -->
-  <view class="substance">
-    <view class="substance-title">好阿客服部外而非你发呢啊发我风娃娃</view>
-    <view class="substance-img">
-      <image src="	https://lexuemiao.oss-cn-beijing.aliyuncs.com/upload/audio/12938a51770fa617d02a32d115b0c1f1.jpg"></image>
-      <image src="	https://lexuemiao.oss-cn-beijing.aliyuncs.com/upload/audio/12938a51770fa617d02a32d115b0c1f1.jpg"></image>
+  <view class="content-box">
+    <view class="top-txt">{{item.title}}</view>
+    <view class="pic-box">
+      <view class="pic">
+        <image class="left-pic" src="{{item.cover}}" mode=""></image>
+      </view>
+      <view class="right-txt">{{item.content}}</view>
     </view>
   </view>
   <!-- 尾部 -->
   <view class="footer">
     <view>
-      <image src="/images/分享.png"></image>
+      <image src="/static/image/分享.png"></image>
     </view>
     <view>
-      <image src="/images/评论.png"></image>
-      <text>9</text>
+      <image src="/static/image/评论.png"></image>
+      <text>{{item.comments}}</text>
     </view>
     <view>
-      <image src="/images/猫爪.png"></image>
-      <text>30</text>
+      <image src="/static/image/猫爪.png"></image>
+      <text>{{item.likes}}</text>
     </view>
   </view>
 </view>
-<view class="release">
+
+<!-- 关注 -->
+<view class="release" wx:for="{{focusList}}" wx:key="index" wx:if="{{currentIndex==2}}">
   <view class="release-top">
     <view class="left">
       <!-- 头像 -->
       <view class="img">
-        <image src="https://lexuemiao.oss-cn-beijing.aliyuncs.com/uploads/image/2020ikgh6ivq1601017111.jpg" class="to"></image>
+        <image src="{{item.avatar}}" class="to"></image>
         <image src="/images/v.png" class="v"></image>
       </view>
       <view class="name-box">
         <!-- 账号名 -->
-        <view>小喵喵</view>
+        <view>{{item.user_nickname}}</view>
         <!-- 日期 -->
         <view class="time">08-19</view>
       </view>
@@ -173,27 +169,27 @@
     </view>
   </view>
   <!-- 内容 -->
-  <view class="substance">
-    <view class="substance-title">好阿客服部外而非你发呢啊发我风娃娃</view>
-    <view class="substance-img">
-      <image src="	https://lexuemiao.oss-cn-beijing.aliyuncs.com/upload/audio/12938a51770fa617d02a32d115b0c1f1.jpg"></image>
-      <image src="	https://lexuemiao.oss-cn-beijing.aliyuncs.com/upload/audio/12938a51770fa617d02a32d115b0c1f1.jpg"></image>
+  <view class="guan-box">
+    <view class="guan-txt">222</view>
+    <view class="guan-pic">
+      333
     </view>
   </view>
   <!-- 尾部 -->
   <view class="footer">
     <view>
-      <image src="/images/分享.png"></image>
+      <image src="/static/image/分享.png"></image>
     </view>
     <view>
-      <image src="/images/评论.png"></image>
-      <text>9</text>
+      <image src="/static/image/评论.png"></image>
+      <text>{{item.comments}}</text>
     </view>
     <view>
-      <image src="/images/猫爪.png"></image>
-      <text>30</text>
+      <image src="/static/image/猫爪.png"></image>
+      <text>{{item.likes}}</text>
     </view>
   </view>
 </view>
+
 <!-- 定位 -->
 <view class="miao"></view>

@@ -64,7 +64,7 @@
             </view>
         </view>
         <view class="hone-content">
-            <view class="lb-item" wx:for="{{9}}" wx:key="index">
+            <view class="lb-item" wx:for="{{2}}" wx:key="index">
                 <view class="lb-title">
                     23政英｜考研政英80+特训营
                 </view>
@@ -85,6 +85,10 @@
                 <text class="lb-label">考验英语</text>
                 <text class="lesson-not-sell"></text>
             </view>
+        </view>
+
+        <view class="choose-btn" bindtap="toIndex">
+        去选课
         </view>
     </view>
 </view>

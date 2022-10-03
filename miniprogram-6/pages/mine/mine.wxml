@@ -45,7 +45,7 @@
 <view class="p" bindtap="coupon">
 <view class="minp">
   <image src="/static/我的优惠卷.png" class="pimg"></image>  
-  <view>我的优惠卷</view>
+  <view>我的优惠券</view>
 </view>
 <view>></view>
 </view>

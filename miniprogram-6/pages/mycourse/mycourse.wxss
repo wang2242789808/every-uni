@@ -186,3 +186,13 @@
     padding: 20rpx;
     background-color: #fafafa;
 }
+.choose-btn{
+    width: 98%;
+    margin: 5% 0 0 1%;
+    background-color: #f15a24;
+    color: white;
+    text-align: center;
+    height: 100rpx;
+    line-height: 100rpx;
+    border-radius: 60rpx;
+}

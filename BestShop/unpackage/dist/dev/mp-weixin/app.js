@@ -45,7 +45,7 @@ const _sfc_main = {
     console.log("App Hide");
   }
 };
-var App = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "C:/Users/Lenovo/Desktop/\u4E50\u5B66\u55B5/BestShop/App.vue"]]);
+var App = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "C:/Users/Lenovo/Desktop/\u4E50\u5B66\u55B5/every-uni/BestShop/App.vue"]]);
 function createApp() {
   const app = common_vendor.createSSRApp(App);
   app.use(uni_modules_vkUviewUi_index.uView);

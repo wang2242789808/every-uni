@@ -3,12 +3,20 @@
 .top {
   width: 100vw;
   height: 140rpx;
-  background: #fff url("https://wap.lexuemiao.com/img/header_bar.72fa2a02.png") no-repeat;
   background-size: 100% 100%;
   display: flex;
   justify-content: space-between;
+  background: #fff url("https://wap.lexuemiao.com/img/header_bar.72fa2a02.png") no-repeat;
+background-size: 100% 100%;
 }
-
+.top-box{
+  width: 100%;
+  background-color: #fff;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
 .top .log {
   width: 150rpx;
   height: 60rpx;
@@ -27,6 +35,9 @@
 .tab-box {
   display: flex;
   justify-content: space-around;
+
+  padding-bottom: 20rpx;
+  box-sizing: border-box;
 }
 
 .tab-box text {
@@ -82,24 +93,26 @@
 /* 发布 */
 .release {
   width: 100%;
-  height: 600rpx;
+  padding: 4% 2%;
+  box-sizing: border-box;
 }
 
 .release .release-top {
-  height: 100rpx;
+  /* height: 100rpx; */
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding: 0 40rpx;
   box-sizing: border-box;
 }
 
 .release .left {
+  width: 60%;
   display: flex;
 }
 
 .release .left .name-box {
   margin-left: 20rpx;
-  font-size: 32rpx;
+  font-size: 28rpx;
 }
 
 .release .left .name-box .time {
@@ -127,18 +140,20 @@
   height: 100%;
   border-radius: 50%;
 }
-
+.right{
+  width: 30%;
+}
 .release .release-top .right .guan {
-  width: 100rpx;
-  height: 40rpx;
-  line-height: 40rpx;
+  width: 120rpx;
+  height: 52rpx;
+  line-height: 52rpx;
   margin-top: 26rpx;
   float: right;
   color: #f15a24;
   background: rgba(241, 90, 36, .12);
   border-radius: 35rpx;
   text-align: center;
-  font-size: 22rpx;
+  font-size: 24rpx;
   font-weight: 500;
   margin-left: 280rpx;
 }
@@ -164,29 +179,84 @@
 
 /* 内容 */
 .substance {
-  padding: 0 40rpx;
+  padding:40rpx;
+  box-sizing: border-box;
   font-size: 32rpx;
 }
 .substance .substance-title{
-  margin: 20rpx 0;
+  margin: 20rpx 0 40rpx 0;
 }
 .substance .substance-img{
+  width: 100%;
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
 }
 .substance .substance-img image{
-  width: 48%;
-  height: 300rpx;
-  margin-bottom: 20rpx;
+  width: 50%;
+  height: 330rpx;
+  margin-right: 20rpx;
   border-radius: 25rpx;
+}
+
+.content-box{
+  width: 100%;
+  padding: 4%; 
+  box-sizing: border-box;
+}
+.content-box .top-txt{
+  font-weight: 600;
+  font-size: 44rpx;
+  color: #424963;
+  margin: 2% 0;
+}
+
+.content-box .pic-box{
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.pic{
+  width: 35%;
+}
+.pic .left-pic{
+  width: 100%;
+  height: 160rpx;
+  border-radius: 16rpx;
+  vertical-align: middle;
+}
+.right-txt{
+  flex: 1;
+  font-size: 32rpx;
+  padding-left: 20rpx;
+  color: #424963;
+  margin: 2% 0 0 0;
+  display: -webkit-box;
+    word-break: break-all;
+    text-overflow:ellipsis;
+    overflow: hidden;
+    white-space: pre-line;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp:3;
+}
+
+.guan-box{
+  width: 100%;
+  padding: 4% 6%;
+  box-sizing: border-box;
+}
+.guan-box .guan-txt{
+  width: 100%;
+  font-size: 30rpx;
+}
+.guan-pic{
+  width: 100%;
 }
 /* 尾部 */
 .footer{
-  padding: 20rpx 0;
+  padding: 40rpx 0;
   display: flex;
   justify-content: space-around;
   border-bottom: 20rpx solid #efefef;
+  border-top: 2rpx solid #eee;
 }
 .footer view{
   display: flex;
