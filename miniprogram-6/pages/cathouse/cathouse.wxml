@@ -17,14 +17,14 @@
 <!-- 滑动模块 -->
 <scroll-view scroll-x="true" wx:if="{{currentIndex==0}}">
   <view class="hua-box">
-    <view class="hua-item">
+    <view class="hua-item" bindtap="tohuatiList">
       <view class="img">
         <image src="https://wap.lexuemiao.com/img/indexMore.eada8bd5.png"></image>
       </view>
       <view class="title">···</view>
       <view class="num">查看更多考研话题</view>
     </view>
-    <view class="hua-item" wx:for="{{askList}}" wx:key="{{item.theme_id}}">
+    <view class="hua-item" wx:for="{{askList}}" wx:key="{{item.theme_id}}" data-id="{{item.theme_id}}" bindtap="tohuatiDetails">
       <view class="img">
         <image src="{{item.cover}}"></image>
       </view>
@@ -36,7 +36,7 @@
 </scroll-view>
 
 <!-- 广场 -->
-<view class="release" wx:for="{{contentList}}" wx:key="index" wx:if="{{currentIndex==0}}">
+<view class="release" wx:for="{{contentList}}" wx:key="index" wx:if="{{currentIndex==0}}" data-val="{{item}}" bindtap="toSquireDetail">
   <view class="release-top">
     <view class="left">
       <!-- 头像 -->
@@ -63,6 +63,7 @@
       <text></text>
     </view>
   </view>
+
   <!-- 内容 -->
   <view class="substance">
     <view class="substance-title">{{item.square_info.dyna_details}}</view>
@@ -70,6 +71,7 @@
       <image wx:for="{{item.square_info.dyna_cover}}" wx:for-item="child" src="{{child}}"></image>
     </view>
   </view>
+
   <!-- 尾部 -->
   <view class="footer">
     <view>
@@ -87,7 +89,7 @@
 </view>
 
 <!-- 图书勘误 -->
-<view class="release" wx:for="{{bookList}}" wx:key="index" wx:if="{{currentIndex==1}}" data-id="{{item.id}}" data-val="{{item}}" bindtap="toBookDetail">
+<view class="release" wx:for="{{bookList}}" wx:key="index" wx:if="{{currentIndex==1}}" data-val="{{item}}" bindtap="toBookDetail">
   <view class="release-top">
     <view class="left">
       <!-- 头像 -->

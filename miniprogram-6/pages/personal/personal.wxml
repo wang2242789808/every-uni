@@ -1,0 +1,70 @@
+<!--pages/personal/personal.wxml个人信息-->
+<view class="nav">
+    <image bindtap="back" src="../../images/返回.png"></image>
+    <text>个人信息</text>
+</view>
+<view class="ul">
+    <view class="li">
+        <view>头像</view>
+        <view>
+            <image src="../../images/客服.png"></image>
+            <image src="../../images/向右箭头.png"></image>
+        </view>
+    </view>
+    <view class="li">
+        <view>昵称</view>
+        <view>
+           <text>166****1540</text>
+            <image src="../../images/向右箭头.png"></image>
+        </view>
+    </view>
+    <view class="li">
+        <view>手机号码</view>
+        <view>
+           <text>166****1540</text>
+            <image src="../../images/向右箭头.png"></image>
+        </view>
+    </view>
+    <view class="li">
+        <view>性别</view>
+        <view>
+           <text>保密</text>
+            <image src="../../images/向右箭头.png"></image>
+        </view>
+    </view>
+    <view class="li">
+        <view>出生日期</view>
+        <view>
+           <text>请填写</text>
+            <image src="../../images/向右箭头.png"></image>
+        </view>
+    </view>
+    <view class="li">
+        <view>地区</view>
+        <view>
+           <text>请填写</text>
+            <image src="../../images/向右箭头.png"></image>
+        </view>
+    </view>
+    <view class="li">
+        <view>年级</view>
+        <view>
+           <text>请填写</text>
+            <image src="../../images/向右箭头.png"></image>
+        </view>
+    </view>
+    <view class="li">
+        <view>报考院校</view>
+        <view>
+           <text>请填写</text>
+            <image src="../../images/向右箭头.png"></image>
+        </view>
+    </view>
+    <view class="li">
+        <view>报考专业</view>
+        <view>
+           <text>请填写</text>
+            <image src="../../images/向右箭头.png"></image>
+        </view>
+    </view>
+</view>

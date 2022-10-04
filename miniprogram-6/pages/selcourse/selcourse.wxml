@@ -82,7 +82,7 @@
     </view>
 
 
-    <!-- 近期公开课 -->
+    <!-- 免费直播课 -->
     <view class="open-box">
         <view class="course-txt" wx:if="{{currentId==1}}">
             <text>{{modelName}}</text>
@@ -90,7 +90,7 @@
         </view>
 
         <view class="con-box" wx:if="{{currentId==1}}">
-            <view class="con-item" wx:for="{{openCourse}}" wx:key="id">
+            <view class="con-item" wx:for="{{openCourse}}" wx:key="id"  data-id="{{item.id}}"  bindtap="goDetail">
                 <image class="pic-img" src="https://lexuemiao.oss-cn-beijing.aliyuncs.com/uploads/image/2020576ztzcv1579054635.jpg"></image>
                 <text>{{item.title}}</text>
                 <view class="free">

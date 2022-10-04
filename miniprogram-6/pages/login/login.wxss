@@ -16,6 +16,10 @@
     width: 50rpx;
     height: 50rpx;
 }
+.ipt-box .right image{
+    width: 200rpx;
+    height: 70rpx;
+}
 .tel-box,.pwd-box{
     width: 100%;
     display: flex;

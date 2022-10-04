@@ -1,91 +1,119 @@
-.bigbox{
-  width: 100%;
-  height: 100%;
-  background-color: #f7f7f7;
+/* pages/my/my.wxss */
+.box {
+    width: 100vw;
+    height: 100vh;
+    background-color: #f7f7f7;
 }
-.box{
-  position:relative;
-  height:8.26667rem;
-  background-image: url(https://wap.lexuemiao.com/img/user_bg.dd455109.png);
-  background-size:100% 100%;
-  background-position:50%;
-  padding-top:2.06667rem;
-  border-radius: 0 0 10% 10%;
-  text-align: center;
-  color: white;
+
+.head {
+    overflow: hidden;
+    width: 100%;
+    height: 340rpx;
+    background-image: url('https://wap.lexuemiao.com/img/user_bg.dd455109.png');
+    background-size: 100% 100%;
 }
-.imgbox{
-  width:3.86667rem;
-  height: 3.86667rem;
-  border-radius:50%;
-  background-size:100%;
-  background-repeat:no-repeat;
-  margin:.8rem auto 0;
+
+.head .icon {
+    float: right;
+    margin-top: 50rpx;
+    margin-right: 60rpx;
+    width: 44rpx;
+    height: 44rpx;
 }
-.img{
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  display: block;
+
+.names {
+    width: 100%;
+    text-align: center;
+    margin-top: 14%;
+    color: white;
+    font-size: 34rpx;
 }
-.iconimg{
-  width: 1.6rem;
-  height: 1.6rem;
-  position:absolute;
-  right:0.66667rem;
-  top: 0.66667rem;
-  
+
+.names .font {
+    margin-top: 20rpx;
 }
-.col_mid{
-  display: flex;
-  align-items: center;
-  justify-content:space-around;
-  font-size: 25rpx;
-  background-color: #fff;
-  margin-bottom: 20px;
-  padding-bottom: 20px;
+
+.head .son {
+    margin-left: 43%;
+    width: 100rpx;
+    height: 100rpx;
+    background-color: white;
+    border-radius: 50%;
+    text-align: center;
 }
-.bor{
-  width: 0;
-  height:1.5rem;
-  border-left: 1px solid #ccc;
+
+.head image {
+    width: 70%;
+    height: 70%;
+    margin-top: 30rpx;
 }
-.ul{
-  width: 120px;
-  height: 30px;
-  text-align: center;
-  padding:.46667rem .33333rem;
+
+.con {
+    margin-top: 20rpx;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    background-color: white;
+    box-sizing: border-box;
+    padding: 10rpx;
 }
-.licolor{
-  color: #ccc;
+
+.img22 {
+    margin-top: 20rpx;
 }
-.minimgs{
-  width: 20px;
-  height: 20px;
-  color: black;
+
+.con view {
+    text-align: center;
+    font-size: 33rpx;
 }
-.centerbox{
-  background-color: #fff;
-  margin-bottom: 20px;
+
+.con .p {
+    font-size: 26rpx;
+    color: #c6c8d6;
 }
-.pimg{
-  width: 17px;
-  height: 17px;
-  padding: 0 5px 0 10px;
+
+.con view image {
+    width: 40rpx;
+    height: 40rpx;
 }
-.p{
-  height: 3rem;
-  border-bottom: 1px solid #f7f7f7;
-  font-size: 30rpx;
-  line-height: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+
+.ul {
+    margin-top: 20rpx;
+    background-color: white;
 }
-.minp{
-  display: flex;
-  align-items: center;
+
+.ul1 {
+    margin-top: 20rpx;
+    background-color: white;
 }
-.footerbox{
-  background-color: #fff;
+
+.ul .li image,
+.ul1 .li image {
+    width: 44rpx;
+    height: 44rpx;
+}
+
+.ul .li,
+.ul1 .li {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 20rpx 20rpx;
+    vertical-align: middle;
+    border-bottom: 1px solid #eee;
+}
+
+.ul .li .imgs,
+.ul1 .li .imgs {
+    position: relative;
+    top: 10rpx;
+    margin-right: 20rpx;
+}
+
+.ul1 {
+    width: 100%;
+    /* display: flex; */
+    /* justify-content: space-between; */
 }

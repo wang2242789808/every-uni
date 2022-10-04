@@ -7,19 +7,29 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+        list:[],
+        askList:[] //评论
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-       console.log(options);
-        // getRequest(`app/news/comments/${options.id}?news_id=${options.id}&page=1&limit=15`).then(res =>{
-        //     console.log(res);
-        // })
+       console.log(JSON.parse(decodeURIComponent(options.deval)));
+       const val=JSON.parse(decodeURIComponent(options.deval))
+       console.log(val);
+       this.setData({
+           list:val
+       })
+       console.log(this.data.list);
+    //    评论
+        getRequest(`app/news/comments/${val.id}?news_id=${val.id}&page=1&limit=15`).then(res =>{
+            console.log(res);
+            this.setData({
+                askList:res.data
+            })
+        })
     },
-
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
@@ -31,7 +41,6 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
     },
 
     /**

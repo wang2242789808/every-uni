@@ -252,6 +252,7 @@ Page({
 
         // 近期公开课
         getRequest(`app/home/marketingCourse/${this.data.currentFirId}`).then(res => {
+            console.log(res);
             this.setData({
                 openCourse: res.data.course_list.splice(0, 3),
                 catchCourse: res.data.course_list,
@@ -287,6 +288,16 @@ Page({
         this.setData({
             lastFlag: false,
             finishFlag: false
+        })
+    },
+    goDetail(e){
+        console.log(e);
+        const {id}=e.currentTarget.dataset
+        getRequest(`app/courseInfo/basis_id=1611/st=1?basis_id=1611&st=1&channel=`).then(res =>{
+            console.log(res);
+        })
+        wx.navigateTo({
+          url: '/pages/kdetails/kdetails',
         })
     },
     // 关闭弹窗

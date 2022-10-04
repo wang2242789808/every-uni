@@ -1,49 +1,55 @@
 <!--pages/bookdetail/bookdetail.wxml-->
 <view class="top-txt">
-    wwwwwwwwwwww
+    {{list.title}}
 </view>
 
 <view class="top">
     <view class="left">
-        <image src="/static/image/我的.png"></image>
-        <text>222</text>
+        <image src="{{list.avatar}}"></image>
+        <text>{{list.user_nickname}}</text>
     </view>
     <view class="right">
         +关注
     </view>
 </view>
 
-<view class="content">
-    <view>
-        66666666666666
-    </view>
-    <view>
-        <image src="/static/image/我的.png" mode="widthFix"></image>
-    </view>
-</view>
+<view class="content">{{list.content}}</view>
 
 <view class="zhua">
-    <image src="/static/image/猫爪.png"></image>
-    <view class="txt">333333</view>
+   <view class="like-box">
+    <image src="/static/image/下载.png"></image>
+    <text>{{list.likes}}</text>
+   </view>
+    <view class="txt">阅读{{list.pv}}</view>
 </view>
 
 <text class="hot-ask">热门评论</text>
-
-<view class="ask-item">
+<view class="ask-pic" wx:if="{{askList.length==0}}">
+    <image src="https://wap.lexuemiao.com/img/noData2.ec86a21a.png" mode="widthFix"></image>
+    <view>还没有人评论</view>
+    <view>快来喵一下~</view>
+</view>
+<view class="ask-item" wx:for="{{askList}}" wx:key="{{item.id}}">
 
     <view class="left-ask">
-        <image src="/static/image/猫人.png"></image>
+        <image src="{{item.avatar}}"></image>
     </view>
     <view class="right-ask">
-        <view class="tel">12322233333</view>
-        <view>dsioooooooooooooooooooooooooooooo4444444ooooooo</view>
+        <view class="tel">{{item.user_nickname}}</view>
+        <view class="cont-txt">{{item.content}}</view>
+
+       <view class="box">
+        <image class="con-pic" src="{{item.content_img}}" mode="" wx:if="{{item.content_img}}"></image>
+       </view>
+    
         <view class="foot-ask">
             <view class="foot-left">
-                <text>2222</text>
+                <text class="time-foot">{{item.updated_at}}前</text>
                 <text>回复</text>
             </view>
             <view class="foot-right">
-                33333333444
+            <image src="/static/image/猫爪.png"></image>
+                {{item.reply_num}}
             </view>
         </view>
     </view>
@@ -55,5 +61,5 @@
 <image class="ping" src="/static/image/评论.png"></image>
 <image src="/static/image/猫爪.png"></image>
 <image src="/static/image/分享.png"></image>
-<text class="ding">56</text>
+<text class="ding" wx:if="{{askList}}">56</text>
 </view>

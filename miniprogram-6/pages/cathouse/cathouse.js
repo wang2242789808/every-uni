@@ -22,8 +22,9 @@ Page({
     currentIndex: 0,
     askList: [],  //话题榜单数据
     contentList: [],  //广场内容
-    bookList:[],  //图书勘误
-    focusList:[]  //关注
+    bookList: [],  //图书勘误
+    focusList: [],  //关注
+    token:''
   },
 
   /**
@@ -51,11 +52,13 @@ Page({
     })
 
     // 广场数据
-    getRequest('app/square/squareList?page=1&limit=15&total=26276').then(res =>{
+    getRequest('app/square/squareList?page=1&limit=15&total=26276').then(res => {
+      console.log(res);
       this.setData({
-        contentList:res.data
+        contentList: res.data
       })
     })
+
   },
 
   /**
@@ -69,9 +72,27 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    const this_=this
+      wx.getStorage({
+        key:'key',
+        success(res){
+          this_.setData({
+            token:res.data
+          })
+        }
+      })
   },
-
+  tohuatiList() {
+    wx.navigateTo({
+      url: '/pages/huatiList/huatiList?path=miaowu',
+    })
+  },
+  tohuatiDetails(e) {
+    console.log(e);
+    wx.navigateTo({
+      url: `/pages/huatiDetails/huatiDetails?id=${e.currentTarget.dataset.id}`,
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */
@@ -112,37 +133,55 @@ Page({
     this.data.currentIndex = e.currentTarget.dataset.index
     console.log(this.data.currentIndex);
     // 图书勘误
-    if(this.data.currentIndex==1){
+    if (this.data.currentIndex == 1) {
       getRequest('app/news/list/52?page=1&limit=15&classifyId=52').then(res => {
-      console.log(res);
+        console.log(res);
         this.setData({
           bookList: res.data
         })
       })
     }
     // 关注
-    if(this.data.currentIndex==2){
-      getRequest('app/focus/dyna?page=1&limit=15').then(res =>{
-        console.log(res);
-        this.setData({
-
+    if (this.data.currentIndex == 2) {
+      if(this.data.token){
+        getRequest('app/focus/dyna?page=1&limit=15').then(res => {
+          console.log(res);
+          this.setData({
+  
+          })
         })
-      })
+      }else{
+        wx.navigateTo({
+          url: '/pages/login/login',
+        })
+      }
+      
     }
     this.setData({
       currentIndex: this.data.currentIndex,
-      bookList:this.data.bookList
+      bookList: this.data.bookList
     })
     console.log(this.data.focusList);
   },
 
   // 去图书详情页
-  toBookDetail(e){
-    const {val}=e.currentTarget.dataset
+  toBookDetail(e) {
+    console.log(e);
+    const { val } = e.currentTarget.dataset
     console.log(val);
-    const deval=JSON.stringify(val)
+    const deval = JSON.stringify(val)
     wx.navigateTo({
-      url: `/pages/bookdetail/bookdetail?deval=${deval}`,
+      url: `/pages/bookdetail/bookdetail?deval=${encodeURIComponent(deval)}`,
+    })
+  },
+
+  toSquireDetail(e) {
+    // console.log(e);
+    const { val } = e.currentTarget.dataset
+    // console.log(val);
+    const deval = JSON.stringify(val)
+    wx.navigateTo({
+      url: `/pages/squire/squire?deval=${encodeURIComponent(deval)}`
     })
   }
 

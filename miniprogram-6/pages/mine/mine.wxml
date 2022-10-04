@@ -1,70 +1,87 @@
-
-<view class="bigbox">
-  <view class="box">
-<view class="imgbox"  bindtap="user">
-<image src="https://lexuemiao.oss-cn-beijing.aliyuncs.com/uploads/images/avatar.jpg" class="img"></image>
+<!--pages/my/my.wxml 我的 -->
+<view class="box">
+<view class="head">
+    <image bindtap="setup" class="icon" src="../../static/image/设置.png"></image>
+    <view class="names">
+        <view class="son">
+            <image bindtap="personal" src="../../static/image/用户.png"></image>
+        </view>
+        <view class="font">
+            <text wx:if="{{key}}">16638351540</text>
+            <view wx:else>
+                <text bindtap="login">登录</text>/<text bindtap="zc">注册</text>
+            </view>
+        </view>
+    </view>
 </view>
-<text>156****9733</text>
-<image src="/static/设置.png" class="iconimg" bindtap="setup"></image>
+<view class="con">
+    <view bindtap="dd">
+        <image src="../../static/image/快递运输.png" class="kd"></image>
+        <view>我的订单</view>
+        <view class="p">买课发快递</view>
+    </view>
+    <view class="bor" bindtap="kc">
+        <image src="../../static/image/卡片.png"></image>
+        <view>兑换课程</view>
+        <view class="p">兑换码兑换课程</view>
+    </view>
+    <view bindtap="dz">
+        <image src="../../static/image/收货地址.png"></image>
+        <view>地址管理</view>
+        <view class="p">收货地址</view>
+    </view>
 </view>
-<view class="col_mid">
-  <view class="ul" bindtap="order">
-  <image src="/static/货车_装车_o.png" class="minimgs"></image>
-  <view>我的订单</view>
-  <view class="licolor">买课发快递</view>
-  </view>
-  <view class="bor"></view>
-  <view class="ul" bindtap="curriculum">
-  <image src="/static/课程.png" class="minimgs"></image>
-  <view>兑换课程</view>
-  <view class="licolor">兑换码兑换课程</view>
-  </view>
-  <view class="bor"></view>
-  <view class="ul" bindtap="address">
-  <image src="/static/地址管理.png" class="minimgs"></image>
-  <view>地址管理</view>
-  <view class="licolor">收货地址</view>
-  </view>
- 
+<view class="ul">
+    <view class="li" bindtap="sc">
+        <view >
+            <image class="imgs" src="../../static/image/形状-星形.png"></image>
+            <text>我的收藏</text>
+        </view>
+        <view>
+            <image class="img22" src="../../static/image/向右箭头.png"></image>
+        </view>
+    </view>
+    <view class="li" bindtap="hy">
+        <view >
+            <image class="imgs" src="../../static/image/钻石.png"></image>
+            <text>我的会员</text>
+        </view>
+        <view>
+            <image  class="img22" src="../../static/image/向右箭头.png"></image>
+        </view>
+    </view>
+    <view class="li" bindtap="yh">
+        <view >
+            <image class="imgs" src="../../static/image/我的优惠券.png"></image>
+            <text>我的优惠券</text>
+        </view>
+        <view>
+            <image class="img22" src="../../static/image/向右箭头.png"></image>
+        </view>
+    </view>
 </view>
-<view class="centerbox">
-<view class="p" bindtap="Collection">
-<view class="minp">
-  <image src="/static/星星.png" class="pimg"></image>  
-  <view>我的收藏</view>
+    <view class="ul1">
+        <view class="li" bindtap="xx">
+        <view >
+            <image class="imgs" src="../../static/image/消息中心.png"></image>
+            <text>我的消息</text>
+        </view>
+        <view>
+            <image class="img22" src="../../static/image/向右箭头.png"></image>
+        </view>
+    </view>
+    <view class="li" bindtap="wt">
+        <view >
+            <image class="imgs" src="../../static/image/反馈.png"></image>
+            <text>问题反馈</text>
+        </view>
+        <view>
+            <image class="img22" src="../../static/image/向右箭头.png"></image>
+        </view>
+    </view>
+    </view>
 </view>
-<view>></view>
-</view>
-<view class="p" bindtap="member">
-<view class="minp">
-  <image src="/static/会员.png" class="pimg"></image>  
-  <view>我的会员</view>
-</view>
-<view>></view>
-</view>
-<view class="p" bindtap="coupon">
-<view class="minp">
-  <image src="/static/我的优惠卷.png" class="pimg"></image>  
-  <view>我的优惠券</view>
-</view>
-<view>></view>
-</view>
-</view>
-<view class="footerbox">
-  <view class="p" bindtap="news">
-<view class="minp">
-  <image src="/static/消息中心.png" class="pimg"></image>  
-  <view>我的消息</view>
-</view>
-<view>></view>
-</view>
-<view class="p" bindtap="feedback">
-<view class="minp">
-  <image src="/static/反馈.png" class="pimg"></image>  
-  <view>问题反馈</view>
-</view>
-<view>></view>
-</view>
-
-</view>
-</view>
+        <!-- <image src="../../images/向右箭头.png"></image> -->
+        
+        
+       
