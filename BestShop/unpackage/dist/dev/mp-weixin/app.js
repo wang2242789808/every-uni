@@ -33,6 +33,8 @@ if (!Math) {
   "./pages/cateView/cateView.js";
   "./pages/carView/carView.js";
   "./pages/mineView/mineView.js";
+  "./pages/search/search.js";
+  "./pages/goodsDetail/goodsDetail.js";
 }
 const _sfc_main = {
   onLaunch: function() {
